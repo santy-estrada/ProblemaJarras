@@ -77,6 +77,7 @@ public class Nodo <E extends Comparable <E>>{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //modificación
+		// PENE
 	}
 	
 }
