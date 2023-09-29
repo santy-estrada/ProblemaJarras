@@ -76,25 +76,7 @@ public class Nodo <E extends Comparable <E>>{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer i = 10;
-		Integer i2 = 12;
-		
-		Nodo<Integer> n1 = new Nodo<Integer>(i);
-		Nodo<Integer> n2 = new Nodo<Integer>(i2);
-		Nodo<Integer> n3 = new Nodo<Integer>(i2);
-		Nodo<Integer> n4 = new Nodo<Integer>(i2);
-		Nodo<Integer> n5 = new Nodo<Integer>(i2);
-		Nodo<Integer> n6 = new Nodo<Integer>(i2);
-		
-		n2.setPadre(n1);
-		n3.setPadre(n2);
-		n3.setSiguienteHermano(n4);
-		n5.setPadre(n4);
-		n6.setPadre(n4);
-		//n2.setPadre(n6);
-		
-		System.out.println(n1.getAltura());
-		System.out.println(n5.getAltura());
+//modificación
 	}
 	
 }
