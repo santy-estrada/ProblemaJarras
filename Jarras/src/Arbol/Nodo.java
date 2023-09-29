@@ -74,5 +74,4 @@ public class Nodo <E extends Comparable <E>>{
 		return a;
 	}
 	
-
 }
