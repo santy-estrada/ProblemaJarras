@@ -8,13 +8,15 @@ public class Nodo <E extends Comparable <E>>{
 	
 	private E llave;
 	
+	//Constructor con todo
 	public Nodo(Nodo<E> primerHijo, Nodo<E> siguienteHermano, Nodo<E> padre, E llave) {
 		this.primerHijo = primerHijo;
 		this.siguienteHermano = siguienteHermano;
 		this.padre = padre;
 		this.llave = llave;
 	}
-
+	
+	//Constructor con la llave
 	public Nodo(E llave) {
 		this.primerHijo = null;
 		this.padre = null;
@@ -25,7 +27,8 @@ public class Nodo <E extends Comparable <E>>{
 	public Nodo<E> getPrimerHijo() {
 		return primerHijo;
 	}
-
+	
+	//Al darle un primer hijo, también se le debe informar al hijo quién es su padre
 	public void setPrimerHijo(Nodo<E> primerHijo) {
 		this.primerHijo = primerHijo;
 		primerHijo.setPadre(this);
@@ -35,6 +38,7 @@ public class Nodo <E extends Comparable <E>>{
 		return siguienteHermano;
 	}
 
+	//Al darle un siguiente hermano, también se debe decir que el padre será el mismo
 	public void setSiguienteHermano(Nodo<E> siguienteHermano) {
 		this.siguienteHermano = siguienteHermano;
 		siguienteHermano.setPadre(padre);
@@ -66,6 +70,7 @@ public class Nodo <E extends Comparable <E>>{
 		return getAltura(this);
 	}
 	
+	//Obtiene la altura contando los padres hasta llegar a la raiz (nodo sin padre)
 	private int getAltura(Nodo<E> h) {
 		int a = 0;
 		while(h.getPadre() != null) {

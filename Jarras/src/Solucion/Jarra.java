@@ -1,6 +1,6 @@
 package Solucion;
 
-public class Jarra{
+public class Jarra implements Comparable<Jarra>{
 	
 	private int volumenActual;
 	private int volumenTotal;
@@ -21,6 +21,7 @@ public class Jarra{
 		return volumenTotal;
 	}
 
+	//Llena la jarra si el volumenTotal es mayor al actual
 	public boolean llenar() {
 		boolean toReturn = false;
 		if (volumenTotal > volumenActual) { 
@@ -31,6 +32,7 @@ public class Jarra{
 		return toReturn;
 	}
 	
+	//Llena parcialmente la jarra si la cantidad a verter más la cantidad actual no sobrepasan el máximo
 	public boolean llenarParcial(int cantidad) {
 		boolean toReturn = false;
 		if ((volumenActual + cantidad) <= volumenTotal) {
@@ -41,6 +43,7 @@ public class Jarra{
 		return toReturn;
 	}
 	
+	//Vacea totalmente la jarra si tiene algo de volumenActual
 	public boolean vaciarTotal() {
 		boolean toReturn = false;
 		if (volumenActual != 0) {
@@ -51,6 +54,7 @@ public class Jarra{
 		return toReturn;
 	}
 	
+	//Vacea parcialmente la jarra si, al restarle la cantidad, el volumen restante es mayor o igual a 0
 	public boolean vaciarParcial(int cantidad) {
 		boolean toReturn = false;
 		if ((volumenActual - cantidad) >= 0) {
@@ -60,5 +64,17 @@ public class Jarra{
 		
 		return toReturn;
 	}
+
+	//Dos jarras son iguales si sus volúmenes actuales y totales lo son
+	@Override
+	public int compareTo(Jarra j) {
+		// TODO Auto-generated method stub
+		if(j.getVolumenActual() == volumenActual && j.getVolumenTotal() == volumenTotal) {
+			return 0;
+		}
+		return 1;
+	}
+
+
 
 }

@@ -12,11 +12,13 @@ public class Problema implements Comparable<Problema>{
 		this.objetivo= objetivo;
 	}
 	
+	//Obtiene el volumen actual de la jarra1
 	public int getCant1() {
 		int volumenActual1= jarra1.getVolumenActual();
 		return volumenActual1;
 	}
 	
+	//Obtiene el volumen actual de la jarra2
 	public int getCant2() {
 		int volumenActual2= jarra2.getVolumenActual();
 		return volumenActual2;
@@ -51,11 +53,11 @@ public class Problema implements Comparable<Problema>{
 		return "Problema [jarra1=" + jarra1 + ", jarra2=" + jarra2 + ", objetivo=" + objetivo + "]";
 	}
 
-
+	//Dos problemas son iguales si sus jarras y su objetivo son iguales
 	@Override
 	public int compareTo(Problema p) {
 		// TODO Auto-generated method stub
-		if(jarra1.getVolumenActual() == p.getCant1() && jarra2.getVolumenActual() == p.getCant2()) {
+		if(jarra1.compareTo(p.getJarra1()) == 0 && jarra2.compareTo(p.getJarra2()) == 0 && objetivo == p.getObjetivo()) {
 			return 0;
 		}
 		return 1;
