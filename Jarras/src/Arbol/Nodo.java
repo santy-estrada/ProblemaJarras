@@ -28,6 +28,7 @@ public class Nodo <E extends Comparable <E>>{
 
 	public void setPrimerHijo(Nodo<E> primerHijo) {
 		this.primerHijo = primerHijo;
+		primerHijo.setPadre(this);
 	}
 
 	public Nodo<E> getSiguienteHermano() {
@@ -54,6 +55,7 @@ public class Nodo <E extends Comparable <E>>{
 	public void setLlave(E llave) {
 		this.llave = llave;
 	}
+
 
 	@Override
 	public String toString() {
