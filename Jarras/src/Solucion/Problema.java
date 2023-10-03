@@ -58,9 +58,9 @@ public class Problema implements Comparable<Problema>{
 	public int compareTo(Problema p) {
 		// TODO Auto-generated method stub
 		if(jarra1.compareTo(p.getJarra1()) == 0 && jarra2.compareTo(p.getJarra2()) == 0 && objetivo == p.getObjetivo()) {
-			return 0;
+			return 0; ///Si son iguales
 		}
-		return 1;
+		return 1;//Si son diferentes
 	}
 	
 	
