@@ -15,6 +15,7 @@ public class Inicio {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -84,7 +85,7 @@ public class Inicio {
 		textField_2.setBounds(21, 212, 131, 19);
 		frame.getContentPane().add(textField_2);
 		
-		JButton btnNewButton = new JButton("SOLUCIONAR");
+		btnNewButton = new JButton("SOLUCIONAR");
 		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.setBounds(335, 174, 141, 51);
