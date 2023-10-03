@@ -94,10 +94,6 @@ public class Inicio {
 		lblNewLabel_2.setIcon(new ImageIcon(Inicio.class.getResource("/Interfaz/giphy.gif")));
 		lblNewLabel_2.setBounds(133, 244, 294, 273);
 		frame.getContentPane().add(lblNewLabel_2);
-		/*
-		Icon imgIcon = new ImageIcon(this.getClass().getResource("ajax-loader.gif"));
-		JLabel label = new JLabel(imgIcon);
-		label.setBounds(668, 43, 46, 14); // You can use your own values
-		frame.getContentPane().add(label);*/
+		
 	}
 }
