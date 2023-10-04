@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTree;
+
+import Solucion.Solucion;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,11 +19,12 @@ import java.awt.event.KeyEvent;
 
 public class Principal {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JButton btnNewButton;
+	private Solucion s;
 
 	/**
 	 * Launch the application.

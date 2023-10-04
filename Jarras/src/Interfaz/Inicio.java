@@ -6,8 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import Solucion.Solucion;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Inicio {
 
@@ -56,39 +63,89 @@ public class Inicio {
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(21, 125, 131, 19);
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(textField.getText().length() != 0 && textField_1.getText().length() != 0 && textField_2.getText().length() != 0) {
+					btnNewButton.setEnabled(true);
+				}else {
+					btnNewButton.setEnabled(false);
+
+				}
+			}
+		});
+		textField.setBounds(44, 125, 131, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Jarra 1:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(21, 106, 92, 13);
+		lblNewLabel_1.setBounds(44, 106, 92, 13);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Jarra 2:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1_1.setBounds(335, 106, 92, 13);
+		lblNewLabel_1_1.setBounds(315, 106, 92, 13);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(textField.getText().length() != 0 && textField_1.getText().length() != 0 && textField_2.getText().length() != 0) {
+					btnNewButton.setEnabled(true);
+				}else {
+					btnNewButton.setEnabled(false);
+
+				}
+			}
+		});
 		textField_1.setColumns(10);
-		textField_1.setBounds(335, 125, 131, 19);
+		textField_1.setBounds(315, 125, 131, 19);
 		frame.getContentPane().add(textField_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Objetivo:");
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1_2.setBounds(21, 193, 92, 13);
+		lblNewLabel_1_2.setBounds(44, 193, 92, 13);
 		frame.getContentPane().add(lblNewLabel_1_2);
 		
 		textField_2 = new JTextField();
+		textField_2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(textField.getText().length() != 0 && textField_1.getText().length() != 0 && textField_2.getText().length() != 0) {
+					btnNewButton.setEnabled(true);
+				}else {
+					btnNewButton.setEnabled(false);
+
+				}
+			}
+		});
 		textField_2.setColumns(10);
-		textField_2.setBounds(21, 212, 131, 19);
+		textField_2.setBounds(44, 212, 131, 19);
 		frame.getContentPane().add(textField_2);
 		
 		btnNewButton = new JButton("SOLUCIONAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int j1 = Integer.parseInt(textField.getText());
+				int j2 = Integer.parseInt(textField_1.getText());
+				int o = Integer.parseInt(textField_2.getText());
+				
+				try {
+					Principal window = new Principal();
+					frame.dispose();	//Cerrar ventana
+					window.frame.setVisible(true);
+					
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
+		
 		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(335, 174, 141, 51);
+		btnNewButton.setBounds(315, 174, 141, 51);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
