@@ -69,7 +69,7 @@ public class Problema implements Comparable<Problema>{
 		int cant2 = jarra2.getVolumenActual();
 		int max = jarra2.getVolumenTotal();
 		
-		while(cant1 != 0 || cant2 < max) {
+		while((cant1 != 0 && cant1 >0) || (cant2 < max && cant2>0)) {
 			cant1--;
 			cant2++;
 		}
@@ -82,7 +82,7 @@ public class Problema implements Comparable<Problema>{
 		int cant2 = jarra2.getVolumenActual();
 		int max = jarra1.getVolumenTotal();
 		
-		while(cant2 != 0 || cant1 < max) {
+		while((cant2 != 0 && cant2>0) || (cant1 < max && cant1>0)) {
 			cant1++;
 			cant2--;
 		}
