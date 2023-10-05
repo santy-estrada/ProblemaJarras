@@ -106,7 +106,7 @@ public class Inicio {
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Objetivo:");
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1_2.setBounds(44, 193, 92, 13);
+		lblNewLabel_1_2.setBounds(44, 187, 92, 19);
 		frame.getContentPane().add(lblNewLabel_1_2);
 		
 		textField_2 = new JTextField();

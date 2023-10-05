@@ -47,6 +47,55 @@ public class Problema implements Comparable<Problema>{
 	public void setObjetivo(int objetivo) {
 		this.objetivo = objetivo;
 	}
+	
+	public boolean llenarJarra1() {
+		return jarra1.llenar();
+	}
+	
+	public boolean llenarJarra2() {
+		return jarra2.llenar();
+	}
+	
+	public boolean vaciarJarra1() {
+		return jarra1.vaciarTotal();
+	}
+	
+	public boolean vaciarJarra2() {
+		return jarra2.vaciarTotal();
+	}
+	
+	public boolean verter1en2() {
+		int cant1 = jarra1.getVolumenActual();
+		int cant2 = jarra2.getVolumenActual();
+		int max = jarra2.getVolumenTotal();
+		
+		while(cant1 != 0 || cant2 < max) {
+			cant1--;
+			cant2++;
+		}
+		
+		return (jarra1.vaciarParcial(cant2) && jarra2.llenarParcial(cant2));
+	}
+	
+	public boolean verter2en1() {
+		int cant1 = jarra1.getVolumenActual();
+		int cant2 = jarra2.getVolumenActual();
+		int max = jarra1.getVolumenTotal();
+		
+		while(cant2 != 0 || cant1 < max) {
+			cant1++;
+			cant2--;
+		}
+		
+		return (jarra2.vaciarParcial(cant1) && jarra1.llenarParcial(cant1));
+	}
+	
+	public boolean solucionado() {
+		if(jarra1.getVolumenActual() == objetivo || jarra2.getVolumenActual() == objetivo) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public String toString() {

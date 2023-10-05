@@ -1,25 +1,120 @@
 package Solucion;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 import Arbol.ArbolPS;
+import Arbol.ENodo;
 import Arbol.Nodo;
 
 public class Solucion {
 	private ArbolPS<Problema> problema;
+	private ArrayList<ArrayList<Nodo<Problema>>> soluciones;
 
 
-	public void solucion(int contenidoJ1,int contenidoJ2,int  objetivo) {
+	public Solucion(int contenidoJ1,int contenidoJ2,int  objetivo) throws ENodo {
 		Problema problema= new Problema(contenidoJ1, contenidoJ2, objetivo);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
 		this.problema = new ArbolPS<Problema>(nodo);
+		solucionar(this.problema.getRaiz());
 	}
 	
-	public void getSoluciones() { //se tiene que cambiar el void por un array
-		solucionar(problema.getRaiz());
-	}
-	
-	private void solucionar(Nodo<Problema> raiz) {
-		if(raiz.getLlave().getJarra1().getVolumenActual() == raiz.getLlave().getObjetivo() || raiz.getLlave().getJarra2().getVolumenActual() == raiz.getLlave().getObjetivo()) {
-			
+	public void printSoluciones() {
+		for(int i = 0; i < soluciones.size(); i++) {
+			ArrayList<Nodo<Problema>> s = soluciones.get(i);
+			for(int j = 0; j < s.size(); j++) {
+				System.out.println(s.get(j));
+			}
+			System.out.println();
 		}
 	}
+	
+	
+	private void saveSolucion(Nodo<Problema> n) {
+	    ArrayList<Nodo<Problema>> solucion = new ArrayList<>();
+	    Stack<Nodo<Problema>> ruta = new Stack<>(); // crea una pila
+	    Nodo<Problema> nodo = n;
+
+	    while (nodo != null) {
+	        ruta.push(nodo);
+	        nodo = nodo.getPadre();
+	    }
+	    while (!ruta.isEmpty()) {
+	        solucion.add(ruta.pop());
+	    }
+	    
+	    this.soluciones.add(solucion);
+	}
+	
+	private void solucionar(Nodo<Problema> n) throws ENodo {
+		if(n.getLlave().solucionado()) {
+			saveSolucion(n);
+		}else {
+			ArrayList<Nodo<Problema>> hijosValidos = siguientePaso(n);
+			for(int i = 0; i < hijosValidos.size(); i++) {
+				solucionar(hijosValidos.get(i));
+			}
+		}
+	}
+	
+	private ArrayList<Nodo<Problema>> siguientePaso(Nodo<Problema> p) throws ENodo{
+		Nodo<Problema> aux = p;
+		ArrayList<Nodo<Problema>> hijos = new ArrayList<Nodo<Problema>>();
+		ArrayList<Nodo<Problema>> hijosBuenos = new ArrayList<Nodo<Problema>>();
+		
+		if(aux.getLlave().llenarJarra1()) {
+			hijos.add(aux);
+			aux = p;
+		}
+		if(p.getLlave().llenarJarra2()) {
+			hijos.add(p);
+			//p = original;
+		}
+		if(p.getLlave().vaciarJarra1()) {
+			hijos.add(p);
+			//p = original;
+		}
+		if(p.getLlave().vaciarJarra2()) {
+			hijos.add(p);
+			//p = original;
+		}
+		if(p.getLlave().verter1en2()) {
+			hijos.add(p);
+			//p = original;
+		}
+		if(p.getLlave().verter2en1()) {
+			hijos.add(p);
+			//p = original;
+		}
+		/*
+		for(int i = 0; i < hijos.size(); i++) {
+			if(valido(hijos.get(i), original)) {
+				problema.insertarNodo(hijos.get(i), original);
+				hijosBuenos.add(hijos.get(i));
+			}
+		}*/
+		
+		return hijosBuenos;
+	}
+	
+	private boolean valido (Nodo<Problema> n, Nodo<Problema>p) {
+		Nodo<Problema> padre = p;
+		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
+			p = padre.getPadre().getPrimerHijo();
+			while(p != null && p.getSiguienteHermano().getLlave().compareTo(n.getLlave()) == 1) {
+				p = p.getSiguienteHermano();
+			}
+			
+			if(p != null) {
+				return false;
+			}
+			
+			padre = padre.getPadre();
+		}
+		
+		return(padre == null)? true: false;
+		
+	}
+	
+	
 }
