@@ -28,7 +28,7 @@ public class Solucion {
 		solucionar(this.problema.getRaiz());
 	}
 	
-	public void printSoluciones() {
+	public void getSoluciones() {
 		for(int i = 0; i < soluciones.size(); i++) {
 			ArrayList<Nodo<Problema>> s = soluciones.get(i);
 			for(int j = 0; j < s.size(); j++) {
