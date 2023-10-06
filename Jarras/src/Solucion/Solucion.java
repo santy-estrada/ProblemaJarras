@@ -124,21 +124,7 @@ public class Solucion {
 		return(padre == null)? true: false;
 		
 	}
-	/*
-	public boolean valido(Nodo<Problema> n, Nodo<Problema> r) {//verifica si ya existe el nodo, devuelve true si no esta repetido
-	
-		Nodo<Problema> nodo = r;
-		while (nodo != null && nodo.getLlave().compareTo(n.getLlave()) != 0) {//que existan mas padres y que no sean iguales
-			while (nodo.getPadre() != null && nodo.getPadre().getSiguienteHermano() == nodo) {
-				nodo = nodo.getPadre(); 
-			}
-			nodo = nodo.getPadre();
-		}
-		if (nodo != null)//distinto de nulo, es decir, si lo encontro
-			return false;
-		return true;
-		
-	}*/
+
 	
 	private Nodo<Problema> copiarNodo(Nodo<Problema> p){ // el metodo copia la informacion de un nodo en otro completamente nuevo
 		Nodo<Problema> nuevo = new Nodo<Problema>(null, null, p, new Problema(p.getLlave().getJarra1().getVolumenTotal(), p.getLlave().getCant1(),
