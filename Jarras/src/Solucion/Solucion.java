@@ -16,6 +16,7 @@ public class Solucion {
 		Problema problema= new Problema(contenidoJ1, contenidoJ2, objetivo);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
 		this.problema = new ArbolPS<Problema>(nodo);
+		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
 		solucionar(this.problema.getRaiz());
 	}
 	
@@ -101,7 +102,7 @@ public class Solucion {
 		Nodo<Problema> padre = p;
 		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
 			p = (padre.getPadre() != null)? padre.getPadre().getPrimerHijo(): null;
-			while(p != null && p.getSiguienteHermano().getLlave().compareTo(n.getLlave()) == 1) {
+			while(p != null && p.getLlave().compareTo(n.getLlave()) == 1) {
 				p = p.getSiguienteHermano();
 			}
 			
@@ -115,10 +116,24 @@ public class Solucion {
 		return(padre == null)? true: false;
 		
 	}
+	/*
+	public boolean valido(Nodo<Problema> n, Nodo<Problema> r) {//verifica si ya existe el nodo, devuelve true si no esta repetido
+	
+		Nodo<Problema> nodo = r;
+		while (nodo != null && nodo.getLlave().compareTo(n.getLlave()) != 0) {//que existan mas padres y que no sean iguales
+			while (nodo.getPadre() != null && nodo.getPadre().getSiguienteHermano() == nodo) {
+				nodo = nodo.getPadre(); 
+			}
+			nodo = nodo.getPadre();
+		}
+		if (nodo != null)//distinto de nulo, es decir, si lo encontro
+			return false;
+		return true;
+		
+	}*/
 	
 	private Nodo<Problema> copiarNodo(Nodo<Problema> p){ // el metodo copia la informacion de un nodo en otro completamente nuevo
-		Nodo<Problema> nuevo = new Nodo<Problema>(p.getPrimerHijo(), p.getSiguienteHermano(),
-				p.getPadre(), new Problema(p.getLlave().getJarra1().getVolumenTotal(), p.getLlave().getCant1(),
+		Nodo<Problema> nuevo = new Nodo<Problema>(null, null, p, new Problema(p.getLlave().getJarra1().getVolumenTotal(), p.getLlave().getCant1(),
 						p.getLlave().getJarra2().getVolumenTotal(),p.getLlave().getCant2(), p.getLlave().getObjetivo()));
 		return nuevo;
 	}

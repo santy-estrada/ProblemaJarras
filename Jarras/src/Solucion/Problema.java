@@ -76,13 +76,15 @@ public class Problema implements Comparable<Problema>{
 		}
 		int cant2 = jarra2.getVolumenActual();
 		int max = jarra2.getVolumenTotal();
+		int vert = 0;
 		
 		while((cant1 != 0) && (cant2 < max)) {
 			cant1--;
 			cant2++;
+			vert++;
 		}
 		
-		return (jarra1.vaciarParcial(cant2) && jarra2.llenarParcial(cant2));
+		return (jarra1.vaciarParcial(vert) && jarra2.llenarParcial(vert));
 	}
 	
 	public boolean verter2en1() {
@@ -92,13 +94,15 @@ public class Problema implements Comparable<Problema>{
 			return false;
 		}
 		int max = jarra1.getVolumenTotal();
+		int vert = 0;
 		
 		while((cant2 != 0) && (cant1 < max)) {
 			cant1++;
 			cant2--;
+			vert++;
 		}
 		
-		return (jarra2.vaciarParcial(cant1) && jarra1.llenarParcial(cant1));
+		return (jarra2.vaciarParcial(vert) && jarra1.llenarParcial(vert));
 	}
 	
 	public boolean solucionado() {

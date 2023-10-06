@@ -39,6 +39,9 @@ public class Jarra implements Comparable<Jarra>{
 	
 	//Llena parcialmente la jarra si la cantidad a verter más la cantidad actual no sobrepasan el máximo
 	public boolean llenarParcial(int cantidad) {
+		if(cantidad == 0) {
+			return false;
+		}
 		boolean toReturn = false;
 		if ((volumenActual + cantidad) <= volumenTotal) {
 			volumenActual = volumenActual + cantidad;
@@ -61,6 +64,9 @@ public class Jarra implements Comparable<Jarra>{
 	
 	//Vacea parcialmente la jarra si, al restarle la cantidad, el volumen restante es mayor o igual a 0
 	public boolean vaciarParcial(int cantidad) {
+		if(cantidad == 0) {
+			return false;
+		}
 		boolean toReturn = false;
 		if ((volumenActual - cantidad) >= 0) {
 			volumenActual = volumenActual - cantidad;
