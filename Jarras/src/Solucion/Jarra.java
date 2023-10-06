@@ -8,6 +8,11 @@ public class Jarra implements Comparable<Jarra>{
 	public Jarra(int volumenTotal) {
 		this.volumenTotal = volumenTotal;
 	}
+	
+	public Jarra(int volumenTotal, int volumenActual) {
+		this.volumenTotal = volumenTotal;
+		this.volumenActual = volumenActual;
+	}
 
 	public void setVolumenActual(int volumenActual) {
 		this.volumenActual = volumenActual;

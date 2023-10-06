@@ -66,23 +66,23 @@ public class Solucion {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		if(p.getLlave().llenarJarra2()) {
+		if(aux.getLlave().llenarJarra2()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		if(p.getLlave().vaciarJarra1()) {
+		if(aux.getLlave().vaciarJarra1()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		if(p.getLlave().vaciarJarra2()) {
+		if(aux.getLlave().vaciarJarra2()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		if(p.getLlave().verter1en2()) {
+		if(aux.getLlave().verter1en2()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		if(p.getLlave().verter2en1()) {
+		if(aux.getLlave().verter2en1()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
@@ -100,7 +100,7 @@ public class Solucion {
 	private boolean valido (Nodo<Problema> n, Nodo<Problema>p) {
 		Nodo<Problema> padre = p;
 		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
-			p = padre.getPadre().getPrimerHijo();
+			p = (padre.getPadre() != null)? padre.getPadre().getPrimerHijo(): null;
 			while(p != null && p.getSiguienteHermano().getLlave().compareTo(n.getLlave()) == 1) {
 				p = p.getSiguienteHermano();
 			}
@@ -118,8 +118,8 @@ public class Solucion {
 	
 	private Nodo<Problema> copiarNodo(Nodo<Problema> p){ // el metodo copia la informacion de un nodo en otro completamente nuevo
 		Nodo<Problema> nuevo = new Nodo<Problema>(p.getPrimerHijo(), p.getSiguienteHermano(),
-				p.getPadre(), new Problema(p.getLlave().getJarra1().getVolumenTotal(), 
-						p.getLlave().getJarra2().getVolumenTotal(), p.getLlave().getObjetivo()));
+				p.getPadre(), new Problema(p.getLlave().getJarra1().getVolumenTotal(), p.getLlave().getCant1(),
+						p.getLlave().getJarra2().getVolumenTotal(),p.getLlave().getCant2(), p.getLlave().getObjetivo()));
 		return nuevo;
 	}
 	

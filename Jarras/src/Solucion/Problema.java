@@ -11,6 +11,11 @@ public class Problema implements Comparable<Problema>{
 		this.jarra2 = new Jarra(VMax2);
 		this.objetivo= objetivo;
 	}
+	public Problema(int VMax1, int act1, int VMax2, int act2, int objetivo){
+		this.jarra1 = new Jarra(VMax1, act1);
+		this.jarra2 = new Jarra(VMax2, act2);
+		this.objetivo= objetivo;
+	}
 	
 	//Obtiene el volumen actual de la jarra1
 	public int getCant1() {
@@ -66,10 +71,13 @@ public class Problema implements Comparable<Problema>{
 	
 	public boolean verter1en2() {
 		int cant1 = jarra1.getVolumenActual();
+		if(cant1 == 0) {
+			return false;
+		}
 		int cant2 = jarra2.getVolumenActual();
 		int max = jarra2.getVolumenTotal();
 		
-		while((cant1 != 0 && cant1 >0) || (cant2 < max && cant2>0)) {
+		while((cant1 != 0) && (cant2 < max)) {
 			cant1--;
 			cant2++;
 		}
@@ -80,9 +88,12 @@ public class Problema implements Comparable<Problema>{
 	public boolean verter2en1() {
 		int cant1 = jarra1.getVolumenActual();
 		int cant2 = jarra2.getVolumenActual();
+		if(cant2 == 0) {
+			return false;
+		}
 		int max = jarra1.getVolumenTotal();
 		
-		while((cant2 != 0 && cant2>0) || (cant1 < max && cant1>0)) {
+		while((cant2 != 0) && (cant1 < max)) {
 			cant1++;
 			cant2--;
 		}
