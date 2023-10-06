@@ -58,41 +58,41 @@ public class Solucion {
 	}
 	
 	private ArrayList<Nodo<Problema>> siguientePaso(Nodo<Problema> p) throws ENodo{
-		Nodo<Problema> aux = p;
+		Nodo<Problema> aux = copiarNodo(p);
 		ArrayList<Nodo<Problema>> hijos = new ArrayList<Nodo<Problema>>();
 		ArrayList<Nodo<Problema>> hijosBuenos = new ArrayList<Nodo<Problema>>();
 		
 		if(aux.getLlave().llenarJarra1()) {
 			hijos.add(aux);
-			aux = p;
+			aux = copiarNodo(p);
 		}
 		if(p.getLlave().llenarJarra2()) {
-			hijos.add(p);
-			//p = original;
+			hijos.add(aux);
+			aux = copiarNodo(p);
 		}
 		if(p.getLlave().vaciarJarra1()) {
-			hijos.add(p);
-			//p = original;
+			hijos.add(aux);
+			aux = copiarNodo(p);
 		}
 		if(p.getLlave().vaciarJarra2()) {
-			hijos.add(p);
-			//p = original;
+			hijos.add(aux);
+			aux = copiarNodo(p);
 		}
 		if(p.getLlave().verter1en2()) {
-			hijos.add(p);
-			//p = original;
+			hijos.add(aux);
+			aux = copiarNodo(p);
 		}
 		if(p.getLlave().verter2en1()) {
-			hijos.add(p);
-			//p = original;
+			hijos.add(aux);
+			aux = copiarNodo(p);
 		}
-		/*
+		
 		for(int i = 0; i < hijos.size(); i++) {
-			if(valido(hijos.get(i), original)) {
-				problema.insertarNodo(hijos.get(i), original);
+			if(valido(hijos.get(i), p)) {
+				problema.insertarNodo(hijos.get(i), p);
 				hijosBuenos.add(hijos.get(i));
 			}
-		}*/
+		}
 		
 		return hijosBuenos;
 	}
@@ -114,6 +114,13 @@ public class Solucion {
 		
 		return(padre == null)? true: false;
 		
+	}
+	
+	private Nodo<Problema> copiarNodo(Nodo<Problema> p){ // el metodo copia la informacion de un nodo en otro completamente nuevo
+		Nodo<Problema> nuevo = new Nodo<Problema>(p.getPrimerHijo(), p.getSiguienteHermano(),
+				p.getPadre(), new Problema(p.getLlave().getJarra1().getVolumenTotal(), 
+						p.getLlave().getJarra2().getVolumenTotal(), p.getLlave().getObjetivo()));
+		return nuevo;
 	}
 	
 	
