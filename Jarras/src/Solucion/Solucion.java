@@ -12,7 +12,15 @@ public class Solucion {
 	private ArrayList<ArrayList<Nodo<Problema>>> soluciones;
 
 
-	public Solucion(int contenidoJ1,int contenidoJ2,int  objetivo) throws ENodo {
+	public Solucion(int contenidoJ1,int contenidoJ2,int  objetivo) throws ENodo, ENumeroImposible {
+		if(contenidoJ1 <= 0 || contenidoJ2 <= 0 || contenidoJ1 == contenidoJ2) {
+			throw new ENumeroImposible();
+		}
+		
+		if((objetivo < contenidoJ2 && objetivo < contenidoJ1) || (objetivo > contenidoJ2 && objetivo > contenidoJ1)) {
+			throw new ENumeroImposible();
+		}
+		
 		Problema problema= new Problema(contenidoJ1, contenidoJ2, objetivo);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
 		this.problema = new ArbolPS<Problema>(nodo);
@@ -138,5 +146,64 @@ public class Solucion {
 		return nuevo;
 	}
 	
+	public void cambiarJarra1(int v1) throws ENodo, ENumeroImposible {
+		int v2 = problema.getRaiz().getLlave().getMax2();
+		int o = problema.getRaiz().getLlave().getObjetivo();
+		int v1a = problema.getRaiz().getLlave().getMax1();
+		
+		if(v1a == v1) {
+			throw new ENumeroImposible("El volumen de la jarra 1 es el actual");
+		}
+		
+		if(v1 <= 0 || v1 == v2) {
+			throw new ENumeroImposible();
+		}
+		
+		Problema problema= new Problema(v1, v2, o);
+		Nodo<Problema> nodo = new Nodo<Problema>(problema);
+		this.problema = new ArbolPS<Problema>(nodo);
+		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
+		solucionar(this.problema.getRaiz());
+	}
+	
+	public void cambiarJarra2(int v2) throws ENodo, ENumeroImposible {
+		int v1 = problema.getRaiz().getLlave().getMax1();
+		int o = problema.getRaiz().getLlave().getObjetivo();
+		int v2a = problema.getRaiz().getLlave().getMax2();
+		
+		if(v2a == v2) {
+			throw new ENumeroImposible("El volumen de la jarra 2 es el actual");
+		}
+		
+		if(v2 <= 0 || v1 == v2) {
+			throw new ENumeroImposible();
+		}
+		
+		Problema problema= new Problema(v1, v2, o);
+		Nodo<Problema> nodo = new Nodo<Problema>(problema);
+		this.problema = new ArbolPS<Problema>(nodo);
+		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
+		solucionar(this.problema.getRaiz());
+	}
+	
+	public void cambiarObjetivo(int o) throws ENodo, ENumeroImposible {
+		int v1 = problema.getRaiz().getLlave().getMax1();
+		int v2 = problema.getRaiz().getLlave().getMax2();
+		int ov = problema.getRaiz().getLlave().getObjetivo();
+		
+		if(ov == o) {
+			throw new ENumeroImposible("El objetivo es el actual");
+		}
+		
+		if((o < v2 && o < v1) || (o > v2 && o > v1)) {
+			throw new ENumeroImposible();
+		}
+		
+		Problema problema= new Problema(v1, v2, o);
+		Nodo<Problema> nodo = new Nodo<Problema>(problema);
+		this.problema = new ArbolPS<Problema>(nodo);
+		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
+		solucionar(this.problema.getRaiz());
+	}
 	
 }

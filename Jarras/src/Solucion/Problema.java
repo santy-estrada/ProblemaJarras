@@ -112,6 +112,13 @@ public class Problema implements Comparable<Problema>{
 		return false;
 	}
 
+	public int getMax1() {
+		return jarra1.getVolumenTotal();
+	}
+	
+	public int getMax2() {
+		return jarra2.getVolumenTotal();
+	}
 	@Override
 	public String toString() {
 		return "Problema [jarra1=" + jarra1 + ", jarra2=" + jarra2 + ", objetivo=" + objetivo + "]";

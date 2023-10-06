@@ -51,6 +51,11 @@ public class Jarra implements Comparable<Jarra>{
 		return toReturn;
 	}
 	
+	@Override
+	public String toString() {
+		return "Jarra [volumenActual=" + volumenActual + ", volumenTotal=" + volumenTotal + "]";
+	}
+
 	//Vacea totalmente la jarra si tiene algo de volumenActual
 	public boolean vaciarTotal() {
 		boolean toReturn = false;

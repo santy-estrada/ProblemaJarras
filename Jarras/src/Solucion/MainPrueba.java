@@ -8,9 +8,12 @@ public class MainPrueba {
 		// TODO Auto-generated method stub
 
 		try {
-			Solucion s = new Solucion(3,4,2);
+			Solucion s = new Solucion(24,17,21);
 			s.printSoluciones();
 		} catch (ENodo e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());;
+		} catch (ENumeroImposible e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());;
 		}
