@@ -192,4 +192,17 @@ public class Solucion {
 		solucionar(this.problema.getRaiz());
 	}
 	
+	public ArrayList<String> obtenerTodasLasSoluciones() {
+	    ArrayList<String> solucionesTexto = new ArrayList<>();
+	    for (ArrayList<Nodo<Problema>> solucion : soluciones) {
+	        StringBuilder solucionTexto = new StringBuilder();
+	        for (Nodo<Problema> nodo : solucion) {
+	            solucionTexto.append(nodo.getLlave().toString()).append("\n");
+	        }
+	        solucionesTexto.add(solucionTexto.toString());
+	    }
+	    return solucionesTexto;
+	}
+
+	
 }

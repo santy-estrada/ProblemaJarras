@@ -2,6 +2,7 @@ package Interfaz;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JTree;
 
@@ -16,10 +17,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextPane;
+
+import java.util.ArrayList;
 
 public class Principal {
 
 	JFrame frame;
+	private JTextArea textArea;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -47,6 +52,7 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
+		mostrarTodasLasSoluciones();
 	}
 
 	/**
@@ -84,6 +90,8 @@ public class Principal {
 		textArea.setBounds(10, 45, 422, 238);
 		panel_1.add(textArea);
 		
+		// Dentro de la clase Principal
+
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setBounds(10, 332, 422, 116);
 		panel_1.add(textArea_1);
@@ -161,4 +169,21 @@ public class Principal {
 		lblNewLabel_2.setBounds(467, 45, 120, 16);
 		frame.getContentPane().add(lblNewLabel_2);
 	}
+	
+	// Dentro de la clase Principal
+
+	public void mostrarTodasLasSoluciones() {
+	    ArrayList<String> solucionesTexto = s.obtenerTodasLasSoluciones(); // Llama al método de Solucion
+	    StringBuilder solucionesConcatenadas = new StringBuilder();
+	    
+	    for (String solucion : solucionesTexto) {
+	        solucionesConcatenadas.append(solucion).append("\n"); // Concatena todas las soluciones
+	    }
+	    
+	    // Ahora, muestra las soluciones en el TextArea
+	    textArea.setText(solucionesConcatenadas.toString());
+	}
+
+
+
 }
