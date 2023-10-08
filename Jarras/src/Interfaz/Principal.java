@@ -25,6 +25,7 @@ public class Principal {
 
 	JFrame frame;
 	private JTextArea textArea;
+	private JTextArea textArea_1;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -86,13 +87,13 @@ public class Principal {
 		lblMejorSolucin.setBounds(10, 303, 185, 25);
 		panel_1.add(lblMejorSolucin);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 45, 422, 238);
 		panel_1.add(textArea);
 		
 		// Dentro de la clase Principal
 
-		JTextArea textArea_1 = new JTextArea();
+		textArea_1 = new JTextArea();
 		textArea_1.setBounds(10, 332, 422, 116);
 		panel_1.add(textArea_1);
 		
@@ -175,13 +176,37 @@ public class Principal {
 	public void mostrarTodasLasSoluciones() {
 	    ArrayList<String> solucionesTexto = s.obtenerTodasLasSoluciones(); // Llama al método de Solucion
 	    StringBuilder solucionesConcatenadas = new StringBuilder();
-	    
+	    String mejorSolucion= this.encontrarMejorSolucion(solucionesTexto);
 	    for (String solucion : solucionesTexto) {
 	        solucionesConcatenadas.append(solucion).append("\n"); // Concatena todas las soluciones
 	    }
 	    
 	    // Ahora, muestra las soluciones en el TextArea
 	    textArea.setText(solucionesConcatenadas.toString());
+	    textArea_1.setText(mejorSolucion);
+	}
+	
+	private String encontrarMejorSolucion(ArrayList<String> soluciones) {
+	    String mejorSolucion = null;
+	    int mejorCantidadPasos = Integer.MAX_VALUE;
+	    
+	    for (String solucion : soluciones) {
+	        // Puedes implementar una lógica aquí para contar los pasos en cada solución
+	        int cantidadPasos = contarPasosEnSolucion(solucion);
+	        
+	        // Si esta solución tiene menos pasos que la mejor hasta ahora, actualiza la mejor solución
+	        if (cantidadPasos < mejorCantidadPasos) {
+	            mejorSolucion = solucion;
+	            mejorCantidadPasos = cantidadPasos;
+	        }
+	    }
+	    
+	    return mejorSolucion;
+	}
+	
+	private int contarPasosEnSolucion(String solucion) {
+	   String[] lineas= solucion.split("\n");
+	    return lineas.length; // Cambia esto con la implementación real
 	}
 
 
