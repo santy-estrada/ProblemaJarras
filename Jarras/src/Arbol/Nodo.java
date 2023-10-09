@@ -60,10 +60,9 @@ public class Nodo <E extends Comparable <E>>{
 		this.llave = llave;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Nodo [llave=" + llave + "]";
+		return  ""+llave;
 	}
 
 	public int getAltura() {

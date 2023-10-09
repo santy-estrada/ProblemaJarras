@@ -121,7 +121,7 @@ public class Problema implements Comparable<Problema>{
 	}
 	@Override
 	public String toString() {
-		return "Problema [jarra1=" + jarra1 + ", jarra2=" + jarra2 + ", objetivo=" + objetivo + "]";
+		return "jarra1=" + jarra1 + ", jarra2=" + jarra2 + ", objetivo=" + objetivo ;
 	}
 
 	//Dos problemas son iguales si sus jarras y su objetivo son iguales

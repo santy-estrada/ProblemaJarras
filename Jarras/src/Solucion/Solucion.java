@@ -1,7 +1,10 @@
 package Solucion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
+
+import javax.swing.JTextArea;
 
 import Arbol.ArbolPS;
 import Arbol.ENodo;
@@ -17,7 +20,7 @@ public class Solucion {
 			throw new ENumeroImposible();
 		}
 		
-		if((objetivo < contenidoJ2 && objetivo < contenidoJ1) || (objetivo > contenidoJ2 && objetivo > contenidoJ1)) {
+		if(objetivo > contenidoJ2 && objetivo > contenidoJ1) {
 			throw new ENumeroImposible();
 		}
 		
@@ -28,11 +31,12 @@ public class Solucion {
 		solucionar(this.problema.getRaiz());
 	}
 	
-	public void getSoluciones() {
+	public void getSoluciones(JTextArea textArea) {
+
 		for(int i = 0; i < soluciones.size(); i++) {
 			ArrayList<Nodo<Problema>> s = soluciones.get(i);
 			for(int j = 0; j < s.size(); j++) {
-				System.out.println(s.get(j));
+				textArea.append(s.get(j).toString());
 			}
 			System.out.println();
 		}
@@ -191,18 +195,4 @@ public class Solucion {
 		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
 		solucionar(this.problema.getRaiz());
 	}
-	
-	public ArrayList<String> obtenerTodasLasSoluciones() {
-	    ArrayList<String> solucionesTexto = new ArrayList<>();
-	    for (ArrayList<Nodo<Problema>> solucion : soluciones) {
-	        StringBuilder solucionTexto = new StringBuilder();
-	        for (Nodo<Problema> nodo : solucion) {
-	            solucionTexto.append(nodo.getLlave().toString()).append("\n");
-	        }
-	        solucionesTexto.add(solucionTexto.toString());
-	    }
-	    return solucionesTexto;
-	}
-
-	
 }
