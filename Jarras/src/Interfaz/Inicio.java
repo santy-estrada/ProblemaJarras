@@ -67,6 +67,7 @@ public class Inicio {
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
+		textField.setToolTipText("Volumen m\u00E1ximo de la jarra 1");
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -93,6 +94,7 @@ public class Inicio {
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		textField_1 = new JTextField();
+		textField_1.setToolTipText("Volumen m\u00E1ximo de la jarra 2");
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -114,6 +116,7 @@ public class Inicio {
 		frame.getContentPane().add(lblNewLabel_1_2);
 		
 		textField_2 = new JTextField();
+		textField_2.setToolTipText("Volumen deseado en una jarra");
 		textField_2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
