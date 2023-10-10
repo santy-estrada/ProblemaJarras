@@ -136,7 +136,7 @@ public class Solucion {
 		return nuevo;
 	}
 	
-	public void cambiarJarra1(int v1) throws ENodo, ENumeroImposible {
+	private void cambiarJarra1(int v1) throws ENodo, ENumeroImposible {
 		int v2 = problema.getRaiz().getLlave().getMax2();
 		int o = problema.getRaiz().getLlave().getObjetivo();
 		int v1a = problema.getRaiz().getLlave().getMax1();
@@ -156,7 +156,7 @@ public class Solucion {
 		solucionar(this.problema.getRaiz());
 	}
 	
-	public void cambiarJarra2(int v2) throws ENodo, ENumeroImposible {
+	private void cambiarJarra2(int v2) throws ENodo, ENumeroImposible {
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int o = problema.getRaiz().getLlave().getObjetivo();
 		int v2a = problema.getRaiz().getLlave().getMax2();
@@ -176,7 +176,7 @@ public class Solucion {
 		solucionar(this.problema.getRaiz());
 	}
 	
-	public void cambiarObjetivo(int o) throws ENodo, ENumeroImposible {
+	private void cambiarObjetivo(int o) throws ENodo, ENumeroImposible {
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int v2 = problema.getRaiz().getLlave().getMax2();
 		int ov = problema.getRaiz().getLlave().getObjetivo();
@@ -194,5 +194,17 @@ public class Solucion {
 		this.problema = new ArbolPS<Problema>(nodo);
 		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
 		solucionar(this.problema.getRaiz());
+	}
+	
+	public void cambiar(int j1, int j2, int o) throws ENodo, ENumeroImposible {
+		if(j1 != 0) {
+			cambiarJarra1(j1);
+		}
+		if(j2 != 0) {
+			cambiarJarra2(j2);
+		}
+		if(o != 0) {
+			cambiarObjetivo(0);
+		}
 	}
 }

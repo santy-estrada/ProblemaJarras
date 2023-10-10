@@ -1,15 +1,21 @@
 package Interfaz;
 
 import java.awt.EventQueue;
+
+import Solucion.ENumeroImposible;
 import Solucion.Solucion;
 
 
 import javax.swing.JFrame;
 import javax.swing.JTree;
 
+import Arbol.ENodo;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,6 +25,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextPane;
 
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal {
 
@@ -31,7 +39,7 @@ public class Principal {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,12 +51,17 @@ public class Principal {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
+	 * @throws ENumeroImposible 
+	 * @throws ENodo 
 	 */
-	public Principal() {
+
+	public Principal(Solucion s) {
+		// TODO Auto-generated constructor stub
+		this.s = s;
 		initialize();
 	}
 
@@ -158,6 +171,36 @@ public class Principal {
 		frame.getContentPane().add(textField_2);
 		
 		btnNewButton = new JButton("CAMBIAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int j1 = (textField.getText().length() != 0)? Integer.parseInt(textField.getText()): 0;
+					int j2 = (textField_1.getText().length() != 0)? Integer.parseInt(textField_1.getText()): 0;
+					int o = (textField_2.getText().length() != 0)? Integer.parseInt(textField_2.getText()): 0;
+					
+					s.cambiar(j1, j2, o);
+					
+					try {
+						Principal window = new Principal(s);
+						frame.dispose();	//Cerrar ventana
+						window.frame.setVisible(true);
+						
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+					
+				}catch ( NumberFormatException ex ) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un entero", "Error", JOptionPane.ERROR_MESSAGE);
+			    } catch (ENodo e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (ENumeroImposible e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+				}
+			}
+		});
 		btnNewButton.setEnabled(false);
 		btnNewButton.setBounds(467, 298, 96, 21);
 		frame.getContentPane().add(btnNewButton);
