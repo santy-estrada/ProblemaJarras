@@ -16,6 +16,7 @@ public class Solucion {
 
 
 	public Solucion(int contenidoJ1,int contenidoJ2,int  objetivo) throws ENodo, ENumeroImposible {
+		 // Verifica las restricciones de los parámetros iniciales
 		if(contenidoJ1 <= 0 || contenidoJ2 <= 0 || contenidoJ1 == contenidoJ2) {
 			throw new ENumeroImposible();
 		}
@@ -23,16 +24,17 @@ public class Solucion {
 		if(objetivo > contenidoJ2 && objetivo > contenidoJ1) {
 			throw new ENumeroImposible();
 		}
-		
+		 // Crea un problema inicial y un nodo raíz para el árbol de búsqueda
 		Problema problema= new Problema(contenidoJ1, contenidoJ2, objetivo);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
 		this.problema = new ArbolPS<Problema>(nodo);
 		this.soluciones = new ArrayList<ArrayList<Nodo<Problema>>>();
+		// Inicia el proceso de búsqueda de soluciones
 		solucionar(this.problema.getRaiz());
 	}
 	
 	public void getSoluciones(JTextArea textArea) {
-
+		  // Muestra las soluciones en un JTextArea
 		for(int i = 0; i < soluciones.size(); i++) {
 			ArrayList<Nodo<Problema>> s = soluciones.get(i);
 			for(int j = 0; j < s.size(); j++) {
@@ -44,10 +46,11 @@ public class Solucion {
 	
 	
 	private void saveSolucion(Nodo<Problema> n) {
+		 // Guarda una solución encontrada en la lista de soluciones
 	    ArrayList<Nodo<Problema>> solucion = new ArrayList<>();
 	    Stack<Nodo<Problema>> ruta = new Stack<>(); // crea una pila
 	    Nodo<Problema> nodo = n;
-
+	    // Construye la ruta desde el nodo actual hasta la raíz
 	    while (nodo != null) {
 	        ruta.push(nodo);
 	        nodo = nodo.getPadre();
@@ -60,6 +63,7 @@ public class Solucion {
 	}
 	
 	private void solucionar(Nodo<Problema> n) throws ENodo {
+		// Realiza la búsqueda recursiva de soluciones en el árbol
 		if(n.getLlave().solucionado()) {
 			saveSolucion(n);
 		}else {
@@ -71,10 +75,11 @@ public class Solucion {
 	}
 	
 	private ArrayList<Nodo<Problema>> siguientePaso(Nodo<Problema> p) throws ENodo{
+		 // Genera los posibles estados siguientes a partir del estado actual
 		Nodo<Problema> aux = copiarNodo(p);
 		ArrayList<Nodo<Problema>> hijos = new ArrayList<Nodo<Problema>>();
 		ArrayList<Nodo<Problema>> hijosBuenos = new ArrayList<Nodo<Problema>>();
-		
+		  // Intenta realizar cada acción posible y agrega los nodos resultantes
 		if(aux.getLlave().llenarJarra1()) {
 			hijos.add(aux);
 			aux = copiarNodo(p);
@@ -99,7 +104,7 @@ public class Solucion {
 			hijos.add(aux);
 			aux = copiarNodo(p);
 		}
-		
+		  // Filtra los nodos válidos y los agrega a la lista de hijos buenos
 		for(int i = 0; i < hijos.size(); i++) {
 			if(valido(hijos.get(i), p)) {
 				problema.insertarNodo(hijos.get(i), p);
@@ -111,6 +116,7 @@ public class Solucion {
 	}
 	
 	private boolean valido (Nodo<Problema> n, Nodo<Problema>p) {
+		 // Verifica si un nodo es válido comparándolo con nodos anteriores en la ruta	
 		Nodo<Problema> padre = p;
 		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
 			p = (padre.getPadre() != null)? padre.getPadre().getPrimerHijo(): null;
@@ -137,6 +143,7 @@ public class Solucion {
 	}
 	
 	private void cambiarJarra1(int v1) throws ENodo, ENumeroImposible {
+		   // Cambia el volumen de la jarra 1 y reinicia la búsqueda
 		int v2 = problema.getRaiz().getLlave().getMax2();
 		int o = problema.getRaiz().getLlave().getObjetivo();
 		int v1a = problema.getRaiz().getLlave().getMax1();
@@ -157,6 +164,7 @@ public class Solucion {
 	}
 	
 	private void cambiarJarra2(int v2) throws ENodo, ENumeroImposible {
+		   // Cambia el volumen de la jarra 2 y reinicia la búsqueda
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int o = problema.getRaiz().getLlave().getObjetivo();
 		int v2a = problema.getRaiz().getLlave().getMax2();
@@ -177,6 +185,7 @@ public class Solucion {
 	}
 	
 	private void cambiarObjetivo(int o) throws ENodo, ENumeroImposible {
+		// Cambia el objetivo y reinicia la búsqueda
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int v2 = problema.getRaiz().getLlave().getMax2();
 		int ov = problema.getRaiz().getLlave().getObjetivo();
@@ -197,6 +206,8 @@ public class Solucion {
 	}
 	
 	public void cambiar(int j1, int j2, int o) throws ENodo, ENumeroImposible {
+		  // Realiza cambios en las jarras y el objetivo según los parámetros proporcionados
+		
 		if(j1 != 0) {
 			cambiarJarra1(j1);
 		}
