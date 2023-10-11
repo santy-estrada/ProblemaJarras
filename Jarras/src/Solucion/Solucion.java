@@ -37,8 +37,9 @@ public class Solucion {
 		  // Muestra las soluciones en un JTextArea
 		for(int i = 0; i < soluciones.size(); i++) {
 			ArrayList<Nodo<Problema>> s = soluciones.get(i);
+			textArea.append("|起院");
 			for(int j = 0; j < s.size(); j++) {
-				textArea.append(s.get(j).toString());
+				textArea.append("     \n"+s.get(j).toString());
 			}
 			System.out.println();
 		}
@@ -194,7 +195,7 @@ public class Solucion {
 			throw new ENumeroImposible("El objetivo es el actual");
 		}
 		
-		if((o < v2 && o < v1) || (o > v2 && o > v1)) {
+		if(o > v2 && o > v1) {
 			throw new ENumeroImposible();
 		}
 		
@@ -217,5 +218,21 @@ public class Solucion {
 		if(o != 0) {
 			cambiarObjetivo(0);
 		}
+	}
+	
+	public void getMejorSolucion(JTextArea textArea) {
+		ArrayList<Nodo<Problema>> mejorSolucion = soluciones.get(0);
+		for(int i=1;i<soluciones.size();i++) {
+			if(mejorSolucion.size()>soluciones.get(i).size()) {
+				mejorSolucion=soluciones.get(i);
+			}
+		}
+		
+		textArea.append("|起院");
+		for(int i=0;i<mejorSolucion.size();i++) {
+			textArea.append("     \n"+mejorSolucion.get(i).toString());
+		}
+		System.out.println();
+		
 	}
 }

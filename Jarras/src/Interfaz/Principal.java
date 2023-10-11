@@ -27,6 +27,8 @@ import javax.swing.JTextPane;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
 
 public class Principal {
 
@@ -70,12 +72,12 @@ public class Principal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 611, 567);
+		frame.setBounds(100, 100, 806, 567);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 10, 447, 485);
+		tabbedPane.setBounds(10, 10, 650, 507);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
@@ -97,19 +99,21 @@ public class Principal {
 		panel_1.add(lblMejorSolucin);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 46, 422, 238);
+		textArea.setBounds(10, 46, 625, 238);
 		panel_1.add(textArea);
 		s.getSoluciones(textArea);
 		
 		// Dentro de la clase Principal
 
 		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(10, 332, 422, 116);
+		textArea_1.setBounds(10, 332, 625, 136);
 		panel_1.add(textArea_1);
+		s.getMejorSolucion(textArea_1);
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("Jarra 1:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(467, 81, 45, 13);
+		lblNewLabel_1.setBounds(684, 83, 45, 13);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		textField = new JTextField();
@@ -125,13 +129,13 @@ public class Principal {
 				}
 			}
 		});
-		textField.setBounds(467, 104, 96, 19);
+		textField.setBounds(684, 106, 96, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Jarra 2:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1.setBounds(467, 147, 45, 13);
+		lblNewLabel_1_1.setBounds(684, 146, 45, 13);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		textField_1 = new JTextField();
@@ -148,12 +152,12 @@ public class Principal {
 			}
 		});
 		textField_1.setColumns(10);
-		textField_1.setBounds(467, 170, 96, 19);
+		textField_1.setBounds(684, 170, 96, 19);
 		frame.getContentPane().add(textField_1);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Objetivo:");
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_1.setBounds(467, 216, 75, 13);
+		lblNewLabel_1_1_1.setBounds(684, 217, 75, 13);
 		frame.getContentPane().add(lblNewLabel_1_1_1);
 		
 		textField_2 = new JTextField();
@@ -170,7 +174,7 @@ public class Principal {
 			}
 		});
 		textField_2.setColumns(10);
-		textField_2.setBounds(467, 239, 96, 19);
+		textField_2.setBounds(684, 241, 96, 19);
 		frame.getContentPane().add(textField_2);
 		
 		btnNewButton = new JButton("CAMBIAR");
@@ -205,12 +209,12 @@ public class Principal {
 			}
 		});
 		btnNewButton.setEnabled(false);
-		btnNewButton.setBounds(467, 298, 96, 21);
+		btnNewButton.setBounds(684, 298, 96, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("Cambiar Datos:");
 		lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblNewLabel_2.setBounds(467, 45, 120, 16);
+		lblNewLabel_2.setBounds(670, 56, 120, 16);
 		frame.getContentPane().add(lblNewLabel_2);
 	}
-}
+	}
