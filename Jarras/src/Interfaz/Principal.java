@@ -72,6 +72,7 @@ public class Principal {
         scrollPaneTextArea.setBounds(10, 46, 625, 238);
         panel_1.add(scrollPaneTextArea);
         textArea = new JTextArea();
+        textArea.setEditable(false);
         scrollPaneTextArea.setViewportView(textArea);
         s.getSoluciones(textArea);
 
@@ -80,6 +81,7 @@ public class Principal {
         scrollPaneTextArea1.setBounds(10, 332, 625, 136);
         panel_1.add(scrollPaneTextArea1);
         textArea_1 = new JTextArea();
+        textArea_1.setEditable(false);
         scrollPaneTextArea1.setViewportView(textArea_1);
         s.getMejorSolucion(textArea_1);
 
