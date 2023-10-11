@@ -8,8 +8,8 @@ public class MainPrueba {
 		// TODO Auto-generated method stub
 
 		try {
-			Solucion s = new Solucion(3,4,2);
-			//s.getSoluciones();
+			Solucion s = new Solucion(4,2,3);
+			s.getSoluciones();
 		} catch (ENodo e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());;

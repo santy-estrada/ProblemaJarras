@@ -34,12 +34,33 @@ public class Solucion {
 	}
 	
 	public void getSoluciones(JTextArea textArea) {
-		  // Muestra las soluciones en un JTextArea
+		  // Añade las soluciones en un JTextArea
+		if(soluciones.size() == 0) {
+			textArea.append("No existen soluciones para las condiciones dadas");
+		}else {
+			for(int i = 0; i < soluciones.size(); i++) {
+				ArrayList<Nodo<Problema>> s = soluciones.get(i);
+				textArea.append("Solución " + (i+1) +":" + "\n");
+				for(int j = 0; j < s.size(); j++) {
+					textArea.append(s.get(j).toString());
+				}
+				
+				if(i < soluciones.size()-1) {
+					textArea.append("     \n");
+
+				}
+			}
+		}
+	}
+	/*
+	 * Método para mostrar en consola las soluciones. Esto es sólo para pruebas
+	 */
+	public void getSoluciones() {
+		  // Añade las soluciones en un JTextArea
 		for(int i = 0; i < soluciones.size(); i++) {
 			ArrayList<Nodo<Problema>> s = soluciones.get(i);
-			textArea.append("|°_°|");
 			for(int j = 0; j < s.size(); j++) {
-				textArea.append("     \n"+s.get(j).toString());
+				System.out.print(s.get(j));
 			}
 			System.out.println();
 		}
@@ -139,7 +160,7 @@ public class Solucion {
 	
 	private Nodo<Problema> copiarNodo(Nodo<Problema> p){ // el metodo copia la informacion de un nodo en otro completamente nuevo
 		Nodo<Problema> nuevo = new Nodo<Problema>(null, null, p, new Problema(p.getLlave().getJarra1().getVolumenTotal(), p.getLlave().getCant1(),
-						p.getLlave().getJarra2().getVolumenTotal(),p.getLlave().getCant2(), p.getLlave().getObjetivo()));
+						p.getLlave().getJarra2().getVolumenTotal(),p.getLlave().getCant2(), p.getLlave().getObjetivo(), p.getLlave().getAccPrecedente()));
 		return nuevo;
 	}
 	
@@ -221,18 +242,20 @@ public class Solucion {
 	}
 	
 	public void getMejorSolucion(JTextArea textArea) {
-		ArrayList<Nodo<Problema>> mejorSolucion = soluciones.get(0);
-		for(int i=1;i<soluciones.size();i++) {
-			if(mejorSolucion.size()>soluciones.get(i).size()) {
-				mejorSolucion=soluciones.get(i);
+		//Método para obtener la mejor solución. Compara los tamaños de los arrayList y selecciona el más corto
+		//Luego, lo añade a un textArea
+		if(soluciones.size() == 0) {
+			textArea.append("No existen soluciones para las condiciones dadas");
+		}else {
+			ArrayList<Nodo<Problema>> mejorSolucion = soluciones.get(0);
+			for(int i=1;i<soluciones.size();i++) {
+				if(mejorSolucion.size()>soluciones.get(i).size()) {
+					mejorSolucion=soluciones.get(i);
+				}
+			}
+			for(int i=0;i<mejorSolucion.size();i++) {
+				textArea.append("     \n"+mejorSolucion.get(i));
 			}
 		}
-		
-		textArea.append("|°_°|");
-		for(int i=0;i<mejorSolucion.size();i++) {
-			textArea.append("     \n"+mejorSolucion.get(i).toString());
-		}
-		System.out.println();
-		
 	}
 }

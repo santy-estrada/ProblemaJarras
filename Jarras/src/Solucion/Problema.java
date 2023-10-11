@@ -5,16 +5,19 @@ public class Problema implements Comparable<Problema>{
 	private Jarra jarra1;
 	private Jarra jarra2;
 	private int objetivo;
+	private String accPrecedente;
 	
 	public Problema(int VMax1, int VMax2, int objetivo){
 		this.jarra1 = new Jarra(VMax1);
 		this.jarra2 = new Jarra(VMax2);
 		this.objetivo= objetivo;
+		this.accPrecedente = "Inicio";
 	}
-	public Problema(int VMax1, int act1, int VMax2, int act2, int objetivo){
+	public Problema(int VMax1, int act1, int VMax2, int act2, int objetivo, String accPrecedente){
 		this.jarra1 = new Jarra(VMax1, act1);
 		this.jarra2 = new Jarra(VMax2, act2);
 		this.objetivo= objetivo;
+		this.accPrecedente = accPrecedente;
 	}
 	
 	//Obtiene el volumen actual de la jarra1
@@ -53,23 +56,39 @@ public class Problema implements Comparable<Problema>{
 		this.objetivo = objetivo;
 	}
 	
+	public String getAccPrecedente() {
+		return accPrecedente;
+	}
+	
+	public void setAccPrecedente(String a) {
+		this.accPrecedente = a;
+	}
+	
 	public boolean llenarJarra1() {
+		accPrecedente = "Llenar Jarra 1";
 		return jarra1.llenar();
 	}
 	
 	public boolean llenarJarra2() {
+		accPrecedente = "Llenar Jarra 2";
+
 		return jarra2.llenar();
 	}
 	
 	public boolean vaciarJarra1() {
+		accPrecedente = "Vaciar Jarra 1";
+
 		return jarra1.vaciarTotal();
 	}
 	
 	public boolean vaciarJarra2() {
+		accPrecedente = "Vaciar Jarra 2";
+
 		return jarra2.vaciarTotal();
 	}
 	
 	public boolean verter1en2() {
+		//Toma cantidad máxima que se puede verter de 1 a 2
 		int cant1 = jarra1.getVolumenActual();
 		if(cant1 == 0) {
 			return false;
@@ -84,10 +103,14 @@ public class Problema implements Comparable<Problema>{
 			vert++;
 		}
 		
+		accPrecedente = "Verter " + vert + "lt de Jarra 1 a Jarra 2";
+
 		return (jarra1.vaciarParcial(vert) && jarra2.llenarParcial(vert));
 	}
 	
 	public boolean verter2en1() {
+		//Toma cantidad máxima que se puede verter de 2 a 1
+
 		int cant1 = jarra1.getVolumenActual();
 		int cant2 = jarra2.getVolumenActual();
 		if(cant2 == 0) {
@@ -102,6 +125,8 @@ public class Problema implements Comparable<Problema>{
 			vert++;
 		}
 		
+		accPrecedente = "Verter " + vert + "lt de Jarra 2 a Jarra 1";
+
 		return (jarra2.vaciarParcial(vert) && jarra1.llenarParcial(vert));
 	}
 	
@@ -121,7 +146,7 @@ public class Problema implements Comparable<Problema>{
 	}
 	@Override
 	public String toString() {
-		return "jarra1=" + jarra1 + ", jarra2=" + jarra2 + ", objetivo=" + objetivo+"\n" ;
+		return accPrecedente + " (J1: " + jarra1 + "; J2: " + jarra2 + "; Obj: " + objetivo+")\n" ;
 	}
 
 	//Dos problemas son iguales si sus jarras y su objetivo son iguales

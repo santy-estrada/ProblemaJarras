@@ -53,7 +53,7 @@ public class Jarra implements Comparable<Jarra>{
 	
 	@Override
 	public String toString() {
-		return " [volumenActual=" + volumenActual + ", volumenTotal=" + volumenTotal + "]";
+		return "Vol= " + volumenActual + ", Max= " + volumenTotal;
 	}
 
 	//Vacea totalmente la jarra si tiene algo de volumenActual
