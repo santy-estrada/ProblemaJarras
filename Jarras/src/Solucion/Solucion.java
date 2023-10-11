@@ -195,7 +195,7 @@ public class Solucion {
 			throw new ENumeroImposible("El objetivo es el actual");
 		}
 		
-		if(o > v2 && o > v1) {
+		if(o > v2 && o > v1 || o <=0) {
 			throw new ENumeroImposible();
 		}
 		
@@ -216,7 +216,7 @@ public class Solucion {
 			cambiarJarra2(j2);
 		}
 		if(o != 0) {
-			cambiarObjetivo(0);
+			cambiarObjetivo(o);
 		}
 	}
 	
