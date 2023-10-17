@@ -20,10 +20,9 @@ public class ArbolPS <E extends Comparable<E>>{
 		if(n == null) {	//Insertar un nodo nulo
 			throw new ENodo("No se puede insertar un nodo nulo");
 		}
-		if(padre == null && raiz != null) {
-			if(raiz != null) { //insertar un nodo sin padre pero ya hay raiz
-				throw new ENodo("No se puede insertar un nodo sin padre");
-			}
+		if(padre == null) {
+			throw new ENodo("No se puede insertar un nodo sin padre");
+		 //insertar un nodo sin padre es imposible
 		}
 		
 		if(padre.getPrimerHijo() == null) {	//Si el padre no tiene hijos, n es primer hijo
