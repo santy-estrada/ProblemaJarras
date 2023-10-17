@@ -36,8 +36,12 @@ public class Solucion {
 	public void getSoluciones(JTextArea textArea) {
 		  // Añade las soluciones en un JTextArea
 		if(soluciones.size() == 0) {
-			
-			textArea.append("No existen soluciones para las condiciones dadas");
+			int j1 = problema.getRaiz().getLlave().getMax1();
+			int j2 = problema.getRaiz().getLlave().getMax2();
+			int o = problema.getRaiz().getLlave().getObjetivo();
+			textArea.append("No existen soluciones para las condiciones dadas: \n");
+			textArea.append("Jarra 1: " + j1 + "lt Jarra 2 " + j2 + "lt Objetivo: " + o + "lt");
+
 		}else {
 			for(int i = 0; i < soluciones.size(); i++) {
 				ArrayList<Nodo<Problema>> s = soluciones.get(i);
