@@ -36,6 +36,7 @@ public class Solucion {
 	public void getSoluciones(JTextArea textArea) {
 		  // Añade las soluciones en un JTextArea
 		if(soluciones.size() == 0) {
+			
 			textArea.append("No existen soluciones para las condiciones dadas");
 		}else {
 			for(int i = 0; i < soluciones.size(); i++) {
@@ -168,15 +169,6 @@ public class Solucion {
 		   // Cambia el volumen de la jarra 1 y reinicia la búsqueda
 		int v2 = problema.getRaiz().getLlave().getMax2();
 		int o = problema.getRaiz().getLlave().getObjetivo();
-		int v1a = problema.getRaiz().getLlave().getMax1();
-		
-		if(v1a == v1) {
-			throw new ENumeroImposible("El volumen de la jarra 1 es el actual");
-		}
-		
-		if(v1 <= 0 || v1 == v2) {
-			throw new ENumeroImposible();
-		}
 		
 		Problema problema= new Problema(v1, v2, o);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
@@ -189,15 +181,6 @@ public class Solucion {
 		   // Cambia el volumen de la jarra 2 y reinicia la búsqueda
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int o = problema.getRaiz().getLlave().getObjetivo();
-		int v2a = problema.getRaiz().getLlave().getMax2();
-		
-		if(v2a == v2) {
-			throw new ENumeroImposible("El volumen de la jarra 2 es el actual");
-		}
-		
-		if(v2 <= 0 || v1 == v2) {
-			throw new ENumeroImposible();
-		}
 		
 		Problema problema= new Problema(v1, v2, o);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
@@ -210,15 +193,6 @@ public class Solucion {
 		// Cambia el objetivo y reinicia la búsqueda
 		int v1 = problema.getRaiz().getLlave().getMax1();
 		int v2 = problema.getRaiz().getLlave().getMax2();
-		int ov = problema.getRaiz().getLlave().getObjetivo();
-		
-		if(ov == o) {
-			throw new ENumeroImposible("El objetivo es el actual");
-		}
-		
-		if(o > v2 && o > v1 || o <=0) {
-			throw new ENumeroImposible();
-		}
 		
 		Problema problema= new Problema(v1, v2, o);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
@@ -230,7 +204,29 @@ public class Solucion {
 	public void cambiar(int j1, int j2, int o) throws ENodo, ENumeroImposible {
 		  // Realiza cambios en las jarras y el objetivo según los parámetros proporcionados
 		
+		int v2a = problema.getRaiz().getLlave().getMax2();
+		int oa = problema.getRaiz().getLlave().getObjetivo();
+		int v1a = problema.getRaiz().getLlave().getMax1();
+		
+		if(v1a == j1) {
+			throw new ENumeroImposible("El volumen de la jarra 1 es el actual");
+		}else if(j1 < 0 || j1 == v2a) {
+			throw new ENumeroImposible();
+		}
+		if(oa == o) {
+			throw new ENumeroImposible("El objetivo es el actual");
+		}else if(o > v2a && o > v1a || o < 0) {
+			throw new ENumeroImposible();
+		}
+		if(v2a == j2) {
+			throw new ENumeroImposible("El volumen de la jarra 2 es el actual");
+		}else if(j2 < 0 || v1a == j2) {
+			throw new ENumeroImposible();
+		}
+	
+		
 		if(j1 != 0) {
+			
 			cambiarJarra1(j1);
 		}
 		if(j2 != 0) {
