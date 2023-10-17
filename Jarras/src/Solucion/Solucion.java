@@ -24,7 +24,7 @@ public class Solucion {
 		if(objetivo > contenidoJ2 && objetivo > contenidoJ1) {
 			throw new ENumeroImposible();
 		}
-		 // Crea un problema inicial y un nodo raíz para el árbol de búsqueda
+		 // Crea un problema inicial y un nodo raíz para el árbolPS 
 		Problema problema= new Problema(contenidoJ1, contenidoJ2, objetivo);
 		Nodo<Problema> nodo = new Nodo<Problema>(problema);
 		this.problema = new ArbolPS<Problema>(nodo);
