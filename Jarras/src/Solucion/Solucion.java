@@ -40,7 +40,7 @@ public class Solucion {
 			int j2 = problema.getRaiz().getLlave().getMax2();
 			int o = problema.getRaiz().getLlave().getObjetivo();
 			textArea.append("No existen soluciones para las condiciones dadas: \n");
-			textArea.append("Jarra 1: " + j1 + "lt Jarra 2 " + j2 + "lt Objetivo: " + o + "lt");
+			textArea.append("Jarra 1: " + j1 + "lt   Jarra 2 " + j2 + "lt   Objetivo: " + o + "lt");
 
 		}else {
 			for(int i = 0; i < soluciones.size(); i++) {
