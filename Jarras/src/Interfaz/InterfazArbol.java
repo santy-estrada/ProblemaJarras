@@ -15,7 +15,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import java.awt.Font;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -23,7 +22,7 @@ public class InterfazArbol {
 	
 	private JPanel panel;
 	private JPanel panel2;
-	private JPanel panel3;
+	//private JPanel panel3;
 	JFrame frame;
 	private Solucion s;
 	private JTextField textField;
@@ -31,33 +30,37 @@ public class InterfazArbol {
 	private JTextField textField_2;
 	private JButton btnNewButton;
 	private JButton btnArbol;
+	private JScrollPane scrollPaneTextArea; // JScrollPane for textArea que tiene la altura
+	private JTextArea textArea;
 
 	InterfazArbol(Solucion s) {
 
 		this.s = s;
-        panel = new JPanel();
-        
-        panel2 = new JPanel();
-        panel2.setBackground(Color.WHITE);
-        panel2.setBounds(30, 500, 730, 200);
-        panel3 = new JPanel();
-        panel3.setBackground(Color.WHITE);
-        panel3.setBounds(30, 730, 730, 70);
-        frame = new JFrame();
-        frame.setSize(1061, 882);
-        frame.getContentPane().add(panel);
-        panel.add(panel2);
-        panel.add(panel3);
-        JScrollPane scrollPane = new JScrollPane(panel);  // Wrap the entire panel in a JScrollPane
-        frame.getContentPane().add(scrollPane);  // Add the JScrollPane to the frame
-        panel.setLayout(null);
+		
+		panel = new JPanel();
+		panel.setLayout(null);
+
+		
+		panel2 = new JPanel();
+		panel2.setBackground(Color.WHITE);
+		panel2.setBounds(30,490,730,100);
+		
+		
+		scrollPaneTextArea = new JScrollPane();
+        scrollPaneTextArea.setBounds(30,610,730,106);
+        panel.add(scrollPaneTextArea);
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Serif", Font.BOLD, 17));
+        scrollPaneTextArea.setViewportView(textArea);
+
 		
 		frame = new JFrame();
-		frame.setSize(1061,882);
+		frame.setSize(1061,787);
 		frame.getContentPane().add(panel);
 		
 		panel.add(panel2);
-		panel.add(panel3);
+		//panel.add(panel3);
 		panel.setLayout(null);
 
 		JLabel titulo = new JLabel("ÁRBOL DE SOLUCIONES");
@@ -65,9 +68,10 @@ public class InterfazArbol {
 		titulo.setFont(new Font("Serif", Font.BOLD, 30));
 		panel.add(titulo);
 
-		JTree arbol = CrearArbol();
-		arbol.setBounds(30,70,730,400);
-		panel.add(arbol);
+		 JTree arbol = CrearArbol();
+	     JScrollPane treeScrollPane = new JScrollPane(arbol);  // Wrap the JTree in a JScrollPane
+	     treeScrollPane.setBounds(30, 70, 730, 400);
+	     panel.add(treeScrollPane);  // Add the JScrollPane to the panel
 		
 		JLabel lblNewLabel_2 = new JLabel("Cambiar Datos:");
 		lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -185,27 +189,25 @@ public class InterfazArbol {
        	}
        });
 		btnArbol.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnArbol.setBounds(818, 726, 153, 60);
+		btnArbol.setBounds(800, 656, 153, 60);
 		panel.add(btnArbol);
 
 		arbol.addTreeSelectionListener(new TreeSelectionListener() {
-            public void valueChanged(TreeSelectionEvent e) {
-            	panel2.repaint();
-            	panel3.repaint();
+		    public void valueChanged(TreeSelectionEvent e) {
+		        panel2.repaint();
             	panel2.setLayout(null);
-            	panel3.setLayout(null);
-                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
-                if (selectedNode != null) {
-                    
-                    Object selectedObject = selectedNode.getUserObject();
-                    Nodo<Problema> x = (Nodo<Problema>) selectedNode.getUserObject();
-                    System.out.println(x);
+
+		        textArea.setText("");  // Clear the text area before appending new content
+		        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
+		        if (selectedNode != null) {
+		            Object selectedObject = selectedNode.getUserObject();
+		            Nodo<Problema> x = (Nodo<Problema>) selectedNode.getUserObject();
+		            System.out.println(x);
                     panel2.removeAll();
-                    panel3.removeAll();
 
-                    Problema pSeleccionado = x.getLlave();
+		            Problema pSeleccionado = x.getLlave();
 
-                    Font letras = new Font("Serif", Font.BOLD, 15);
+		            Font letras = new Font("Serif", Font.BOLD, 15);
 
                     JLabel vJarra1 = new JLabel("Volumen Primera Jarra: " + pSeleccionado.getCant1());
                     vJarra1.setFont(letras);
@@ -214,30 +216,17 @@ public class InterfazArbol {
                     JLabel vJarra2 = new JLabel("Volumen Segunda Jarra: " + pSeleccionado.getCant2());
                     vJarra2.setFont(letras);
                     vJarra2.setBounds(20,50,400,30);
+                    
+		            String alturaNodo = "Altura Nodo: " + x.getAltura() + "\n";
+		            String tieneHijo = (x.getPrimerHijo() != null)? "Sí": "No";
+		            String tieneHermano = (x.getSiguienteHermano() != null)? "Sí": "No";
+		            String NodoHijo = "Tiene hijo: " + tieneHijo + "\n";
+		            String NodoHermano = "Tiene siguiente hermano: " + tieneHermano;
 
-                    JLabel alturaNodo = new JLabel("Altura Nodo: " + x.getAltura());
-                    alturaNodo.setFont(new Font("Serif", Font.BOLD, 15));
-                    alturaNodo.setBounds(20,20,400,30);
-
-                    boolean tieneHijo = false;
-                    boolean tieneHermano = false;
-                    if (x.getPrimerHijo() != null) tieneHijo = true;
-                    if (x.getSiguienteHermano() != null) tieneHermano = true;
-
-                    JLabel NodoHijo = new JLabel("Tiene hijo: " + tieneHijo);
-                    NodoHijo.setFont(new Font("Serif", Font.BOLD, 15));
-                    NodoHijo.setBounds(20,50,400,30);
-
-                    JLabel NodoHermano = new JLabel("Tiene Hermano: " + tieneHermano);
-                    NodoHermano.setFont(new Font("Serif", Font.BOLD, 15));
-                    NodoHermano.setBounds(20,80,400,30);
-
-
-                    if (x.getPadre() != null) {
-	                    Nodo<Problema> nodoAnterior = x.getPadre();
-	                    Problema pAnterior = nodoAnterior.getLlave();
-
-	                    JLabel vAnteriorJarra1 = new JLabel("Volumen Anterior Primera Jarra: " + pAnterior.getCant1());
+		            if (x.getPadre() != null) {
+		                Nodo<Problema> nodoAnterior = x.getPadre();
+		                Problema pAnterior = nodoAnterior.getLlave();
+		                JLabel vAnteriorJarra1 = new JLabel("Volumen Anterior Primera Jarra: " + pAnterior.getCant1());
 	                    vAnteriorJarra1.setFont(letras);
 	                    vAnteriorJarra1.setBounds(300,20,400,30);
 
@@ -247,17 +236,17 @@ public class InterfazArbol {
 
 	                    panel2.add(vAnteriorJarra1);
 	                    panel2.add(vAnteriorJarra2);
-                	}
-                    
-                    panel2.add(vJarra1);
+		            }
+		            
+		            panel2.add(vJarra1);
                     panel2.add(vJarra2);
-                    panel3.add(alturaNodo);
-                    panel3.add(NodoHijo);
-                    panel3.add(NodoHermano);
 
-                }
-            }
-        });
+		            textArea.append(alturaNodo);
+		            textArea.append(NodoHijo);
+		            textArea.append(NodoHermano);
+		        }
+		    }
+		});
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
