@@ -1,5 +1,12 @@
+package Interfaz;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import Arbol.Nodo;
+import Solucion.Problema;
+import Solucion.Solucion;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.TreeSelectionEvent;
