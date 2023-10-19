@@ -33,6 +33,7 @@ public class Principal {
     private JScrollPane scrollPaneTextArea1; // JScrollPane for textArea_1
     private JTextArea textArea;
     private JTextArea textArea_1;
+    private JButton btnArbol;
 
     public Principal(Solucion s) {
         this.s = s;
@@ -48,10 +49,6 @@ public class Principal {
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setBounds(10, 10, 650, 507);
         frame.getContentPane().add(tabbedPane);
-
-        JPanel panel = new JPanel();
-        tabbedPane.addTab("Árbol", null, panel, null);
-        panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
         tabbedPane.addTab("Soluciones", null, panel_1, null);
@@ -186,6 +183,21 @@ public class Principal {
         lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 13));
         lblNewLabel_2.setBounds(670, 56, 120, 16);
         frame.getContentPane().add(lblNewLabel_2);
-    }
+        
+        btnArbol = new JButton("\u00C1RBOL");
+        btnArbol.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		 try {
+                     InterfazArbol window = new InterfazArbol(s);
+                     frame.dispose(); // Cerrar ventana
+                     window.frame.setVisible(true);
 
+                 } catch (Exception e2) {
+                     e2.printStackTrace();
+                 }
+        	}
+        });
+        btnArbol.setBounds(684, 452, 96, 21);
+        frame.getContentPane().add(btnArbol);
+    }
 }

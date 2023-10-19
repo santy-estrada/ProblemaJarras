@@ -258,4 +258,8 @@ public class Solucion {
 			}
 		}
 	}
+	
+	public ArbolPS<Problema> getProblema() {
+		return problema;
+	}
 }
