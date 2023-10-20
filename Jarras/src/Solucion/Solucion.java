@@ -148,7 +148,9 @@ public class Solucion {
 		Nodo<Problema> padre = p;
 		//Mientras tenga padre --> Nodo sin padre es raíz
 		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
+			//p se convierte en el primer hijo del padre del padre original
 			p = (padre.getPadre() != null)? padre.getPadre().getPrimerHijo(): null;
+			//Recorre todos los "tíos"
 			while(p != null && p.getLlave().compareTo(n.getLlave()) == 1) {
 				p = p.getSiguienteHermano();
 			}
