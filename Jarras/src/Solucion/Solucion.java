@@ -143,8 +143,10 @@ public class Solucion {
 	}
 	
 	private boolean valido (Nodo<Problema> n, Nodo<Problema>p) {
-		 // Verifica si un nodo es válido comparándolo con nodos anteriores en la ruta	
+		 // Verifica si un nodo es válido comparándolo con nodos anteriores
+		// El nodo debe ser único en todo el árbol
 		Nodo<Problema> padre = p;
+		//Mientras tenga padre --> Nodo sin padre es raíz
 		while(padre != null && n.getLlave().compareTo(padre.getLlave()) == 1) {
 			p = (padre.getPadre() != null)? padre.getPadre().getPrimerHijo(): null;
 			while(p != null && p.getLlave().compareTo(n.getLlave()) == 1) {
