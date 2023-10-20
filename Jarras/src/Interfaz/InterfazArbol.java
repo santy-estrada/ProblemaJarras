@@ -255,8 +255,7 @@ public class InterfazArbol {
 
 	public JTree CrearArbol() {
 
-		//No he creado el objeto de solucion
-		Nodo<Problema> raiz = s.getProblema().getRaiz() ; //Aun no he escrito el metodo getRaiz() en solucion
+		Nodo<Problema> raiz = s.getProblema().getRaiz();
 		DefaultMutableTreeNode jRaiz = new DefaultMutableTreeNode(raiz);
 
 		return new JTree(crearSubArbol(raiz,jRaiz));
