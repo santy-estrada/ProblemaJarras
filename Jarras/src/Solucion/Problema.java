@@ -97,6 +97,10 @@ public class Problema implements Comparable<Problema>{
 		int max = jarra2.getVolumenTotal();
 		int vert = 0;
 		
+		/*
+		 * Va vertiendo de a litro hasta que la jarra destino llegue al máximo o hasta que la 
+		 * jarra origen esté vacía
+		 */
 		while((cant1 != 0) && (cant2 < max)) {
 			cant1--;
 			cant2++;
@@ -119,6 +123,10 @@ public class Problema implements Comparable<Problema>{
 		int max = jarra1.getVolumenTotal();
 		int vert = 0;
 		
+		/*
+		 * Va vertiendo de a litro hasta que la jarra destino llegue al máximo o hasta que la 
+		 * jarra origen esté vacía
+		 */
 		while((cant2 != 0) && (cant1 < max)) {
 			cant1++;
 			cant2--;
